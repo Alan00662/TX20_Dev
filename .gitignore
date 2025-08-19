@@ -1,0 +1,61 @@
+# Prerequisites
+*.d
+tx16mk3mx/MDK-ARM/Boot/tx16mk3mx_Boot
+tx16mk3mx/MDK-ARM/Boot/tx16mk3mx_Appli
+tx16mk3_bootloader/MDK-ARM/Boot/tx16mk3mx_Appli
+tx16mk3_bootloader/MDK-ARM/Boot/tx16mk3mx_Boot
+TX16MK3_Loader/MDK_Project/Out
+art_pi2_bootloader/build
+art_pi2_lvgl_demo_tx16mk3/build
+art_pi2_touchgfx/build
+art_pi2_blink_led
+
+# Object files
+*.o
+*.ko
+*.obj
+*.elf
+.vscode/
+# Linker output
+*.ilk
+*.map
+*.exp
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Libraries
+*.lib
+*.a
+*.la
+*.lo
+
+# Shared objects (inc. Windows DLLs)
+*.dll
+*.so
+*.so.*
+*.dylib
+
+# Executables
+*.exe
+*.out
+*.app
+*.i*86
+*.x86_64
+*.hex
+
+# Debug files
+*.dSYM/
+*.su
+*.idb
+*.pdb
+
+# Kernel Module Compile Results
+*.mod*
+*.cmd
+.tmp_versions/
+modules.order
+Module.symvers
+Mkfile.old
+dkms.conf
