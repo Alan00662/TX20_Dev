@@ -1,10 +1,7 @@
 # Prerequisites
 *.d
-tx16mk3mx/MDK-ARM/Boot/tx16mk3mx_Boot
-tx16mk3mx/MDK-ARM/Boot/tx16mk3mx_Appli
-tx16mk3_bootloader/MDK-ARM/Boot/tx16mk3mx_Appli
-tx16mk3_bootloader/MDK-ARM/Boot/tx16mk3mx_Boot
-TX16MK3_Loader/MDK_Project/Out
+build/
+.cache/
 art_pi2_bootloader/build
 art_pi2_lvgl_demo_tx16mk3/build
 art_pi2_touchgfx/build
