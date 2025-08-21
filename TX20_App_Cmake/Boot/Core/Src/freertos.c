@@ -32,7 +32,6 @@
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
-typedef StaticTask_t osStaticThreadDef_t;
 /* USER CODE BEGIN PTD */
 
 /* USER CODE END PTD */
@@ -53,22 +52,31 @@ typedef StaticTask_t osStaticThreadDef_t;
 /* USER CODE END Variables */
 /* Definitions for defaultTask */
 osThreadId_t defaultTaskHandle;
-uint32_t defaultTaskBuffer[ 128 ];
-osStaticThreadDef_t defaultTaskControlBlock;
 const osThreadAttr_t defaultTask_attributes = {
   .name = "defaultTask",
-  .cb_mem = &defaultTaskControlBlock,
-  .cb_size = sizeof(defaultTaskControlBlock),
-  .stack_mem = &defaultTaskBuffer[0],
-  .stack_size = sizeof(defaultTaskBuffer),
+  .stack_size = 128 * 4,
   .priority = (osPriority_t) osPriorityNormal,
 };
-/* Definitions for START_TASK */
-osThreadId_t START_TASKHandle;
-const osThreadAttr_t START_TASK_attributes = {
-  .name = "START_TASK",
+/* Definitions for ledTask */
+osThreadId_t ledTaskHandle;
+const osThreadAttr_t ledTask_attributes = {
+  .name = "ledTask",
   .stack_size = 128 * 4,
-  .priority = (osPriority_t) osPriorityLow,
+  .priority = (osPriority_t) osPriorityNormal,
+};
+/* Definitions for touchTask */
+osThreadId_t touchTaskHandle;
+const osThreadAttr_t touchTask_attributes = {
+  .name = "touchTask",
+  .stack_size = 128 * 4,
+  .priority = (osPriority_t) osPriorityNormal,
+};
+/* Definitions for displayTask */
+osThreadId_t displayTaskHandle;
+const osThreadAttr_t displayTask_attributes = {
+  .name = "displayTask",
+  .stack_size = 512 * 4,
+  .priority = (osPriority_t) osPriorityNormal,
 };
 
 /* Private function prototypes -----------------------------------------------*/
@@ -77,7 +85,9 @@ const osThreadAttr_t START_TASK_attributes = {
 /* USER CODE END FunctionPrototypes */
 
 void StartDefaultTask(void *argument);
-void startTask(void *argument);
+void LedTask(void *argument);
+void TouchTask(void *argument);
+void DisplayTask(void *argument);
 
 void MX_FREERTOS_Init(void); /* (MISRA C 2004 rule 8.1) */
 
@@ -111,8 +121,14 @@ void MX_FREERTOS_Init(void) {
   /* creation of defaultTask */
   defaultTaskHandle = osThreadNew(StartDefaultTask, NULL, &defaultTask_attributes);
 
-  /* creation of START_TASK */
-  START_TASKHandle = osThreadNew(startTask, NULL, &START_TASK_attributes);
+  /* creation of ledTask */
+  ledTaskHandle = osThreadNew(LedTask, NULL, &ledTask_attributes);
+
+  /* creation of touchTask */
+  touchTaskHandle = osThreadNew(TouchTask, NULL, &touchTask_attributes);
+
+  /* creation of displayTask */
+  displayTaskHandle = osThreadNew(DisplayTask, NULL, &displayTask_attributes);
 
   /* USER CODE BEGIN RTOS_THREADS */
   /* add threads, ... */
@@ -142,24 +158,58 @@ void StartDefaultTask(void *argument)
   /* USER CODE END StartDefaultTask */
 }
 
-/* USER CODE BEGIN Header_startTask */
+/* USER CODE BEGIN Header_LedTask */
 /**
-* @brief Function implementing the START_TASK thread.
+* @brief Function implementing the ledTask thread.
 * @param argument: Not used
 * @retval None
 */
-/* USER CODE END Header_startTask */
-void startTask(void *argument)
+/* USER CODE END Header_LedTask */
+void LedTask(void *argument)
 {
-  /* USER CODE BEGIN startTask */
+  /* USER CODE BEGIN LedTask */
+  /* Infinite loop */
+  for (;;) {
+    LL_GPIO_TogglePin(GPIOM,LED2_Pin);
+    osDelay(500);
+  }
+  /* USER CODE END LedTask */
+}
+
+/* USER CODE BEGIN Header_TouchTask */
+/**
+* @brief Function implementing the touchTask thread.
+* @param argument: Not used
+* @retval None
+*/
+/* USER CODE END Header_TouchTask */
+void TouchTask(void *argument)
+{
+  /* USER CODE BEGIN TouchTask */
   /* Infinite loop */
   for(;;)
   {
-    // xTaskCreate(ledTask, "ledTask", 128, NULL, 3, NULL);
-    // xTaskCreate(touchTask, "touchTask", 128, NULL, 4, NULL);
     osDelay(1);
   }
-  /* USER CODE END startTask */
+  /* USER CODE END TouchTask */
+}
+
+/* USER CODE BEGIN Header_DisplayTask */
+/**
+* @brief Function implementing the displayTask thread.
+* @param argument: Not used
+* @retval None
+*/
+/* USER CODE END Header_DisplayTask */
+void DisplayTask(void *argument)
+{
+  /* USER CODE BEGIN DisplayTask */
+  /* Infinite loop */
+  for(;;)
+  {
+    osDelay(1);
+  }
+  /* USER CODE END DisplayTask */
 }
 
 /* Private application code --------------------------------------------------*/
