@@ -9,6 +9,9 @@ set(MX_Defines_Syms
 # STM32CubeMX generated include paths
 set(MX_Include_Dirs
     ${CMAKE_SOURCE_DIR}/Core/Inc
+    ${CMAKE_SOURCE_DIR}/TouchGFX/App
+    ${CMAKE_SOURCE_DIR}/TouchGFX/target/generated
+    ${CMAKE_SOURCE_DIR}/TouchGFX/target
     ${CMAKE_SOURCE_DIR}/../Drivers/STM32H7RSxx_HAL_Driver/Inc
     ${CMAKE_SOURCE_DIR}/../Drivers/STM32H7RSxx_HAL_Driver/Inc/Legacy
     ${CMAKE_SOURCE_DIR}/../Middlewares/Third_Party/FreeRTOS/Source/include
@@ -23,6 +26,7 @@ set(MX_Application_Src
     ${CMAKE_SOURCE_DIR}/Core/Src/main.c
     ${CMAKE_SOURCE_DIR}/Core/Src/gpio.c
     ${CMAKE_SOURCE_DIR}/Core/Src/freertos.c
+    ${CMAKE_SOURCE_DIR}/Core/Src/crc.c
     ${CMAKE_SOURCE_DIR}/Core/Src/dma2d.c
     ${CMAKE_SOURCE_DIR}/Core/Src/flash.c
     ${CMAKE_SOURCE_DIR}/Core/Src/i2c.c
@@ -33,6 +37,14 @@ set(MX_Application_Src
     ${CMAKE_SOURCE_DIR}/Core/Src/stm32h7rsxx_hal_timebase_tim.c
     ${CMAKE_SOURCE_DIR}/Core/Src/sysmem.c
     ${CMAKE_SOURCE_DIR}/Core/Src/syscalls.c
+    ${CMAKE_SOURCE_DIR}/TouchGFX/target/generated/TouchGFXConfiguration.cpp
+    ${CMAKE_SOURCE_DIR}/TouchGFX/target/generated/TouchGFXGeneratedHAL.cpp
+    ${CMAKE_SOURCE_DIR}/TouchGFX/target/generated/STM32DMA.cpp
+    ${CMAKE_SOURCE_DIR}/TouchGFX/target/generated/OSWrappers.cpp
+    ${CMAKE_SOURCE_DIR}/TouchGFX/target/TouchGFXHAL.cpp
+    ${CMAKE_SOURCE_DIR}/TouchGFX/target/STM32TouchController.cpp
+    ${CMAKE_SOURCE_DIR}/TouchGFX/target/TouchGFXGPIO.cpp
+    ${CMAKE_SOURCE_DIR}/TouchGFX/App/app_touchgfx.c
     ${CMAKE_SOURCE_DIR}/Core/Startup/startup_stm32h7r7xx.s
 )
 
@@ -42,7 +54,8 @@ set(STM32_Drivers_Src
     ${CMAKE_SOURCE_DIR}/../Drivers/STM32H7RSxx_HAL_Driver/Src/stm32h7rsxx_hal_tim.c
     ${CMAKE_SOURCE_DIR}/../Drivers/STM32H7RSxx_HAL_Driver/Src/stm32h7rsxx_hal_tim_ex.c
     ${CMAKE_SOURCE_DIR}/../Drivers/STM32H7RSxx_HAL_Driver/Src/stm32h7rsxx_hal_cortex.c
-    ${CMAKE_SOURCE_DIR}/../Drivers/STM32H7RSxx_HAL_Driver/Src/stm32h7rsxx_hal_dma2d.c
+    ${CMAKE_SOURCE_DIR}/../Drivers/STM32H7RSxx_HAL_Driver/Src/stm32h7rsxx_hal_crc.c
+    ${CMAKE_SOURCE_DIR}/../Drivers/STM32H7RSxx_HAL_Driver/Src/stm32h7rsxx_hal_crc_ex.c
     ${CMAKE_SOURCE_DIR}/../Drivers/STM32H7RSxx_HAL_Driver/Src/stm32h7rsxx_hal_rcc.c
     ${CMAKE_SOURCE_DIR}/../Drivers/STM32H7RSxx_HAL_Driver/Src/stm32h7rsxx_hal_rcc_ex.c
     ${CMAKE_SOURCE_DIR}/../Drivers/STM32H7RSxx_HAL_Driver/Src/stm32h7rsxx_hal_flash.c
@@ -54,6 +67,7 @@ set(STM32_Drivers_Src
     ${CMAKE_SOURCE_DIR}/../Drivers/STM32H7RSxx_HAL_Driver/Src/stm32h7rsxx_hal_pwr_ex.c
     ${CMAKE_SOURCE_DIR}/../Drivers/STM32H7RSxx_HAL_Driver/Src/stm32h7rsxx_hal.c
     ${CMAKE_SOURCE_DIR}/../Drivers/STM32H7RSxx_HAL_Driver/Src/stm32h7rsxx_hal_exti.c
+    ${CMAKE_SOURCE_DIR}/../Drivers/STM32H7RSxx_HAL_Driver/Src/stm32h7rsxx_hal_dma2d.c
     ${CMAKE_SOURCE_DIR}/../Drivers/STM32H7RSxx_HAL_Driver/Src/stm32h7rsxx_hal_i2c.c
     ${CMAKE_SOURCE_DIR}/../Drivers/STM32H7RSxx_HAL_Driver/Src/stm32h7rsxx_hal_i2c_ex.c
     ${CMAKE_SOURCE_DIR}/../Drivers/STM32H7RSxx_HAL_Driver/Src/stm32h7rsxx_hal_smbus.c
