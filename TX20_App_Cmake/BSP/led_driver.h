@@ -7,7 +7,9 @@ extern "C"
 #endif
 	
 #include "main.h"
-void ledTask(void* argument);
+void led_on(uint8_t num);
+void led_off(uint8_t num);
+void led_loopbink(void);
 #ifdef __cplusplus
 }
 #endif

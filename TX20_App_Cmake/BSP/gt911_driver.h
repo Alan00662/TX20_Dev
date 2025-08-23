@@ -8,9 +8,9 @@ extern "C"
 	
 #include "main.h"
 
-#define TP_RST_Pin        LL_GPIO_PIN_2
+#define TP_RST_Pin        GPIO_PIN_2
 #define TP_RST_GPIO_Port  GPIOF
-#define TP_INT_Pin        LL_GPIO_PIN_3
+#define TP_INT_Pin        GPIO_PIN_3
 #define TP_INT_GPIO_Port  GPIOF
 
 #define GT_CMD_WR    	0XBA     //写命令
@@ -36,7 +36,6 @@ typedef struct
 extern TS_StateTypeDef Touch;
 void gt911_init(void);
 void gt911_get_state(TS_StateTypeDef* state);
-void touchTask(void* argument);
 #ifdef __cplusplus
 }
 #endif

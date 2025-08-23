@@ -68,7 +68,7 @@ const osThreadAttr_t ledTask_attributes = {
 osThreadId_t touchTaskHandle;
 const osThreadAttr_t touchTask_attributes = {
   .name = "touchTask",
-  .stack_size = 128 * 4,
+  .stack_size = 256 * 4,
   .priority = (osPriority_t) osPriorityNormal,
 };
 /* Definitions for displayTask */
@@ -98,7 +98,7 @@ void MX_FREERTOS_Init(void); /* (MISRA C 2004 rule 8.1) */
   */
 void MX_FREERTOS_Init(void) {
   /* USER CODE BEGIN Init */
-
+    gt911_init();
   /* USER CODE END Init */
 
   /* USER CODE BEGIN RTOS_MUTEX */
@@ -168,10 +168,11 @@ void StartDefaultTask(void *argument)
 void LedTask(void *argument)
 {
   /* USER CODE BEGIN LedTask */
+    uint32_t preTime = xTaskGetTickCount();
   /* Infinite loop */
   for (;;) {
-    LL_GPIO_TogglePin(GPIOM,LED2_Pin);
-    osDelay(500);
+    led_loopbink();
+    vTaskDelayUntil(&preTime, 399);
   }
   /* USER CODE END LedTask */
 }
@@ -186,10 +187,15 @@ void LedTask(void *argument)
 void TouchTask(void *argument)
 {
   /* USER CODE BEGIN TouchTask */
+      uint32_t preTime = xTaskGetTickCount();
   /* Infinite loop */
-  for(;;)
-  {
-    osDelay(1);
+  for (;;) {
+            gt911_get_state(&Touch);
+        if(Touch.TouchDetected)
+        {
+            debug_tx4("X:%d,Y:%d\n",Touch.X,Touch.Y);
+        }
+    vTaskDelayUntil(&preTime, 19);
   }
   /* USER CODE END TouchTask */
 }

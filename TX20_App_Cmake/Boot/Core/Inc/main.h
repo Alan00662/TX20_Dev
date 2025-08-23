@@ -29,17 +29,6 @@ extern "C" {
 /* Includes ------------------------------------------------------------------*/
 #include "stm32h7rsxx_hal.h"
 
-#include "stm32h7rsxx_ll_i2c.h"
-#include "stm32h7rsxx_ll_system.h"
-#include "stm32h7rsxx_ll_gpio.h"
-#include "stm32h7rsxx_ll_exti.h"
-#include "stm32h7rsxx_ll_bus.h"
-#include "stm32h7rsxx_ll_cortex.h"
-#include "stm32h7rsxx_ll_rcc.h"
-#include "stm32h7rsxx_ll_utils.h"
-#include "stm32h7rsxx_ll_pwr.h"
-#include "stm32h7rsxx_ll_dma.h"
-
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 
@@ -68,19 +57,19 @@ void Error_Handler(void);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
-#define LED2_Pin LL_GPIO_PIN_3
+#define LED2_Pin GPIO_PIN_3
 #define LED2_GPIO_Port GPIOM
-#define LED1_Pin LL_GPIO_PIN_2
+#define LED1_Pin GPIO_PIN_2
 #define LED1_GPIO_Port GPIOM
-#define LED0_Pin LL_GPIO_PIN_1
+#define LED0_Pin GPIO_PIN_1
 #define LED0_GPIO_Port GPIOM
-#define DISP_Pin LL_GPIO_PIN_4
+#define DISP_Pin GPIO_PIN_4
 #define DISP_GPIO_Port GPIOD
-#define Backlight_Pin LL_GPIO_PIN_11
+#define Backlight_Pin GPIO_PIN_11
 #define Backlight_GPIO_Port GPIOE
-#define SD_PRE_Pin LL_GPIO_PIN_6
+#define SD_PRE_Pin GPIO_PIN_6
 #define SD_PRE_GPIO_Port GPIOF
-#define PWR_ON_Pin LL_GPIO_PIN_14
+#define PWR_ON_Pin GPIO_PIN_14
 #define PWR_ON_GPIO_Port GPIOD
 
 /* USER CODE BEGIN Private defines */

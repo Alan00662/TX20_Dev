@@ -6,12 +6,17 @@
 #include "FreeRTOS.h"
 #include "cmsis_os2.h"
 
-#define TP_I2C I2C2
+#define TP_I2C hi2c1
+
 
 static void set_float(void)
 {
-	LL_GPIO_SetPinMode(TP_INT_GPIO_Port, TP_INT_Pin, LL_GPIO_MODE_INPUT);
-  LL_GPIO_SetPinPull(TP_INT_GPIO_Port, TP_INT_Pin, LL_GPIO_PULL_NO);
+	GPIO_InitTypeDef GPIO_InitStruct = {0};
+	__HAL_RCC_GPIOF_CLK_ENABLE();
+  GPIO_InitStruct.Pin = TP_INT_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  HAL_GPIO_Init(TP_INT_GPIO_Port, &GPIO_InitStruct);
 }
 
 
@@ -21,52 +26,26 @@ static void GT911_WR_Reg_One_byte(uint16_t reg,uint8_t data)
 	temp[0]=reg>>8;
 	temp[1]=reg&0xff;
 	temp[2]=data;
-	
-	LL_I2C_HandleTransfer(TP_I2C, GT_CMD_WR, LL_I2C_ADDRSLAVE_7BIT, 3, LL_I2C_MODE_AUTOEND, LL_I2C_GENERATE_START_WRITE);
-	
-	while(!LL_I2C_IsActiveFlag_TXIS(TP_I2C))
-  { 
-  }	
-	LL_I2C_TransmitData8(TP_I2C,temp[0]);
-
-	while(!LL_I2C_IsActiveFlag_TXIS(TP_I2C))
-  { 
-  }	
-	LL_I2C_TransmitData8(TP_I2C,temp[1]);
-		
-	while(!LL_I2C_IsActiveFlag_TXIS(TP_I2C))
-  { 
-  }	
-	LL_I2C_TransmitData8(TP_I2C,temp[2]);
+	if(HAL_I2C_Master_Transmit(&TP_I2C,GT_CMD_WR,temp,3,0xff)!=HAL_OK)
+	{
+//		printf("write reg one byte error\r\n");
+	}
 		
 }
 
   
 static void GT911_RD_Reg(uint16_t reg,uint8_t *buf,uint8_t len)
 {
-	uint8_t i = 0;
 	uint8_t temp[2]={0};
-	temp[0]=reg>>8;	
 	temp[1]=reg&0xff;
-
-	LL_I2C_HandleTransfer(TP_I2C, GT_CMD_WR, LL_I2C_ADDRSLAVE_7BIT, 2, LL_I2C_MODE_AUTOEND, LL_I2C_GENERATE_START_WRITE);
-	while(!LL_I2C_IsActiveFlag_TXIS(TP_I2C))
-  { 
-  }
-	LL_I2C_TransmitData8(TP_I2C,temp[0]);
-		
-	while(!LL_I2C_IsActiveFlag_TXIS(TP_I2C))
-  { 
-  }
-	LL_I2C_TransmitData8(TP_I2C,temp[1]);
-		
-	LL_I2C_HandleTransfer(TP_I2C, GT_CMD_WR, LL_I2C_ADDRSLAVE_7BIT, len, LL_I2C_MODE_AUTOEND,LL_I2C_GENERATE_START_READ);
-	for(i =0;i<len;i++)
+	temp[0]=reg>>8;
+	if(HAL_I2C_Master_Transmit(&TP_I2C,GT_CMD_WR,temp,2,0xff)!=HAL_OK)
 	{
-		while(!LL_I2C_IsActiveFlag_RXNE(TP_I2C))
-		{		
-		}
-		*(buf+i) = LL_I2C_ReceiveData8(TP_I2C);
+//		printf("read reg error\r\n");
+	}
+	if(HAL_I2C_Master_Receive(&TP_I2C,GT_CMD_RD,buf,len,0xff)!=HAL_OK)
+	{
+//		printf("read reg error\r\n");
 	}
 
 }
@@ -75,19 +54,17 @@ static void GT911_RD_Reg(uint16_t reg,uint8_t *buf,uint8_t len)
 void gt911_init(void)
 {
 	  uint8_t temp[5]={0};	
-    LL_AHB4_GRP1_EnableClock(LL_AHB4_GRP1_PERIPH_GPIOF);
-    LL_GPIO_SetPinMode(TP_RST_GPIO_Port, TP_RST_Pin, LL_GPIO_MODE_OUTPUT);
-    LL_GPIO_SetPinOutputType(TP_RST_GPIO_Port, TP_RST_Pin, LL_GPIO_OUTPUT_PUSHPULL);
-    LL_GPIO_SetPinPull(TP_RST_GPIO_Port, TP_RST_Pin, LL_GPIO_PULL_NO);
-    
 
-    LL_GPIO_ResetOutputPin(TP_RST_GPIO_Port, TP_RST_Pin);
+    HAL_GPIO_WritePin(TP_RST_GPIO_Port, TP_RST_Pin,GPIO_PIN_RESET);
+    	debug_tx4("HAL_Delay1\n");
     HAL_Delay(10);
-    LL_GPIO_SetOutputPin(TP_INT_GPIO_Port, TP_INT_Pin);
+    	debug_tx4("HAL_Delay2\n");
+    HAL_GPIO_WritePin(TP_INT_GPIO_Port, TP_INT_Pin,GPIO_PIN_RESET);
     HAL_Delay(1);
-    LL_GPIO_SetOutputPin(TP_RST_GPIO_Port, TP_RST_Pin);
+    debug_tx4("HAL_Delay3\n");
+    HAL_GPIO_WritePin(TP_RST_GPIO_Port, TP_RST_Pin,GPIO_PIN_SET);
     HAL_Delay(60);
-		
+	debug_tx4("HAL_Delay4\n");	
 	set_float();
 
 	temp[4]=0;
@@ -132,16 +109,3 @@ void gt911_get_state(TS_StateTypeDef* state)
 
 
 TS_StateTypeDef Touch ={0};
-
-void touchTask(void* argument)
-{
-    while(1)
-    {
-        gt911_get_state(&Touch);
-        if(Touch.TouchDetected)
-        {
-            debug_tx4("X:%d,Y:%d\n",Touch.X,Touch.Y);
-        }
-        HAL_Delay(10);
-    }
-}

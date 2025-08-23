@@ -105,12 +105,12 @@ int main(void)
   MX_DMA2D_Init();
   MX_LTDC_Init();
   /* USER CODE BEGIN 2 */
-  LL_GPIO_SetOutputPin(PWR_ON_GPIO_Port, PWR_ON_Pin);
-  LL_GPIO_SetOutputPin(DISP_GPIO_Port, DISP_Pin);
-  LL_GPIO_SetOutputPin(Backlight_GPIO_Port, Backlight_Pin);
+  HAL_GPIO_WritePin(PWR_ON_GPIO_Port, PWR_ON_Pin,GPIO_PIN_SET);
+  HAL_GPIO_WritePin(DISP_GPIO_Port, DISP_Pin,GPIO_PIN_SET);
+  HAL_GPIO_WritePin(Backlight_GPIO_Port, Backlight_Pin,GPIO_PIN_SET);
 //   gt911_init();
-  uart4_send_string("Into APP!1\n");
-    LL_GPIO_SetOutputPin(GPIOM, LED2_Pin|LED1_Pin|LED0_Pin);
+  uart4_send_string("Into APP!\n");
+    HAL_GPIO_WritePin(GPIOM, LED2_Pin|LED1_Pin|LED0_Pin,GPIO_PIN_RESET);
   /* USER CODE END 2 */
 
   /* Init scheduler */
