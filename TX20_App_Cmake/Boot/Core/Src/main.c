@@ -20,10 +20,10 @@
 #include "main.h"
 #include "FreeRTOS.h"
 #include "cmsis_os2.h"
+#include "dma2d.h"
 #include "flash.h"
 #include "i2c.h"
-#include "sdmmc.h"
-#include "tim.h"
+#include "ltdc.h"
 #include "usart.h"
 #include "gpio.h"
 
@@ -102,11 +102,12 @@ int main(void)
   MX_FLASH_Init();
   MX_I2C1_Init();
   MX_I2C2_Init();
-  MX_TIM1_Init();
-  MX_TIM4_Init();
-//   MX_SDMMC2_SDIO_Init();
+  MX_DMA2D_Init();
+  MX_LTDC_Init();
   /* USER CODE BEGIN 2 */
-  LL_GPIO_SetOutputPin(GPIOD, LL_GPIO_PIN_14);
+  LL_GPIO_SetOutputPin(PWR_ON_GPIO_Port, PWR_ON_Pin);
+  LL_GPIO_SetOutputPin(DISP_GPIO_Port, DISP_Pin);
+  LL_GPIO_SetOutputPin(Backlight_GPIO_Port, Backlight_Pin);
 //   gt911_init();
   uart4_send_string("Into APP!1\n");
     LL_GPIO_SetOutputPin(GPIOM, LED2_Pin|LED1_Pin|LED0_Pin);
@@ -165,17 +166,18 @@ void SystemClock_Config(void)
   RCC_OscInitStruct.PLL1.PLLS = 2;
   RCC_OscInitStruct.PLL1.PLLT = 2;
   RCC_OscInitStruct.PLL1.PLLFractional = 0;
-  RCC_OscInitStruct.PLL2.PLLState = RCC_PLL_ON;
-  RCC_OscInitStruct.PLL2.PLLSource = RCC_PLLSOURCE_HSE;
-  RCC_OscInitStruct.PLL2.PLLM = 4;
-  RCC_OscInitStruct.PLL2.PLLN = 84;
-  RCC_OscInitStruct.PLL2.PLLP = 2;
-  RCC_OscInitStruct.PLL2.PLLQ = 2;
-  RCC_OscInitStruct.PLL2.PLLR = 2;
-  RCC_OscInitStruct.PLL2.PLLS = 3;
-  RCC_OscInitStruct.PLL2.PLLT = 3;
-  RCC_OscInitStruct.PLL2.PLLFractional = 0;
-  RCC_OscInitStruct.PLL3.PLLState = RCC_PLL_NONE;
+  RCC_OscInitStruct.PLL2.PLLState = RCC_PLL_NONE;
+  RCC_OscInitStruct.PLL3.PLLState = RCC_PLL_ON;
+  RCC_OscInitStruct.PLL3.PLLSource = RCC_PLLSOURCE_HSE;
+  RCC_OscInitStruct.PLL3.PLLM = 2;
+  RCC_OscInitStruct.PLL3.PLLN = 50;
+  RCC_OscInitStruct.PLL3.PLLP = 2;
+  RCC_OscInitStruct.PLL3.PLLQ = 2;
+  RCC_OscInitStruct.PLL3.PLLR = 24;
+  RCC_OscInitStruct.PLL3.PLLS = 2;
+  RCC_OscInitStruct.PLL3.PLLT = 2;
+  RCC_OscInitStruct.PLL3.PLLFractional = 0;
+
   if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
   {
     Error_Handler();

@@ -76,6 +76,8 @@ void Error_Handler(void);
 #define LED0_GPIO_Port GPIOM
 #define DISP_Pin LL_GPIO_PIN_4
 #define DISP_GPIO_Port GPIOD
+#define Backlight_Pin LL_GPIO_PIN_11
+#define Backlight_GPIO_Port GPIOE
 #define SD_PRE_Pin LL_GPIO_PIN_6
 #define SD_PRE_GPIO_Port GPIOF
 #define PWR_ON_Pin LL_GPIO_PIN_14
