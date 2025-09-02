@@ -42,6 +42,9 @@ add_executable(${CMAKE_PROJECT_NAME})
 # Include mx-generated 
 include("mx-generated.cmake")
 
+# Add touchgfx generated sources and libraries
+add_subdirectory(cmake/touchgfx)
+
 
 # In order to use CMake for cross-compiling
 set(CMAKE_CXX_COMPILER_FORCED "true") 

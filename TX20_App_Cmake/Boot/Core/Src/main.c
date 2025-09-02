@@ -109,7 +109,7 @@ int main(void)
   MX_CRC_Init();
   MX_TouchGFX_Init();
   /* Call PreOsInit function */
-  MX_TouchGFX_PreOSInit();
+
   /* USER CODE BEGIN 2 */
   HAL_GPIO_WritePin(PWR_ON_GPIO_Port, PWR_ON_Pin,GPIO_PIN_SET);
   HAL_GPIO_WritePin(DISP_GPIO_Port, DISP_Pin,GPIO_PIN_SET);

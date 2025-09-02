@@ -3,15 +3,15 @@
   "Application": {
     "Name": "TX20_App_Cmake",
     "TouchGfxPath": "../Middlewares/ST/touchgfx",
-    "AvailableColorDepths": [ 24 ],
+    "AvailableColorDepths": [ 32 ],
     "AvailableLCDs":
     {
-      "24": "LCD24bpp"
+      "32": "LCD32bpp"
     },
     "AvailableResolutions": [
       {
-        "Width": 32,
-        "Height": 32
+        "Width": 800,
+        "Height": 480
       }
     ],
     "PostGenerateTargetCommand": "touchgfx update_project",

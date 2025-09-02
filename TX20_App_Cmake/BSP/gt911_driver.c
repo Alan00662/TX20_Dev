@@ -56,15 +56,11 @@ void gt911_init(void)
 	  uint8_t temp[5]={0};	
 
     HAL_GPIO_WritePin(TP_RST_GPIO_Port, TP_RST_Pin,GPIO_PIN_RESET);
-    	debug_tx4("HAL_Delay1\n");
     HAL_Delay(10);
-    	debug_tx4("HAL_Delay2\n");
     HAL_GPIO_WritePin(TP_INT_GPIO_Port, TP_INT_Pin,GPIO_PIN_RESET);
     HAL_Delay(1);
-    debug_tx4("HAL_Delay3\n");
     HAL_GPIO_WritePin(TP_RST_GPIO_Port, TP_RST_Pin,GPIO_PIN_SET);
     HAL_Delay(60);
-	debug_tx4("HAL_Delay4\n");	
 	set_float();
 
 	temp[4]=0;
