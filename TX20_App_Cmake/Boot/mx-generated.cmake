@@ -8,77 +8,83 @@ set(MX_Defines_Syms
 )
 # STM32CubeMX generated include paths
 set(MX_Include_Dirs
-    ${CMAKE_SOURCE_DIR}/Core/Inc
-    ${CMAKE_SOURCE_DIR}/../Drivers/STM32H7RSxx_HAL_Driver/Inc
-    ${CMAKE_SOURCE_DIR}/../Drivers/STM32H7RSxx_HAL_Driver/Inc/Legacy
-    ${CMAKE_SOURCE_DIR}/../Middlewares/Third_Party/FreeRTOS/Source/include
-    ${CMAKE_SOURCE_DIR}/../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2
-    ${CMAKE_SOURCE_DIR}/../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F
-    ${CMAKE_SOURCE_DIR}/../Drivers/CMSIS/RTOS2/Include
-    ${CMAKE_SOURCE_DIR}/../Drivers/CMSIS/Device/ST/STM32H7RSxx/Include
-    ${CMAKE_SOURCE_DIR}/../Drivers/CMSIS/Include
+    ${CMAKE_CURRENT_SOURCE_DIR}/Core/Inc
+    ${CMAKE_CURRENT_SOURCE_DIR}/../Drivers/STM32H7RSxx_HAL_Driver/Inc
+    ${CMAKE_CURRENT_SOURCE_DIR}/../Drivers/STM32H7RSxx_HAL_Driver/Inc/Legacy
+    ${CMAKE_CURRENT_SOURCE_DIR}/../Middlewares/Third_Party/FreeRTOS/Source/include
+    ${CMAKE_CURRENT_SOURCE_DIR}/../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2
+    ${CMAKE_CURRENT_SOURCE_DIR}/../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F
+    ${CMAKE_CURRENT_SOURCE_DIR}/../Drivers/CMSIS/RTOS2/Include
+    ${CMAKE_CURRENT_SOURCE_DIR}/../Drivers/CMSIS/Device/ST/STM32H7RSxx/Include
+    ${CMAKE_CURRENT_SOURCE_DIR}/../Drivers/CMSIS/Include
 )
 # STM32CubeMX generated application sources
 set(MX_Application_Src
-    ${CMAKE_SOURCE_DIR}/Core/Src/main.c
-    ${CMAKE_SOURCE_DIR}/Core/Src/gpio.c
-    ${CMAKE_SOURCE_DIR}/Core/Src/freertos.c
-    ${CMAKE_SOURCE_DIR}/Core/Src/dma2d.c
-    ${CMAKE_SOURCE_DIR}/Core/Src/flash.c
-    ${CMAKE_SOURCE_DIR}/Core/Src/i2c.c
-    ${CMAKE_SOURCE_DIR}/Core/Src/ltdc.c
-    ${CMAKE_SOURCE_DIR}/Core/Src/usart.c
-    ${CMAKE_SOURCE_DIR}/Core/Src/stm32h7rsxx_it.c
-    ${CMAKE_SOURCE_DIR}/Core/Src/stm32h7rsxx_hal_msp.c
-    ${CMAKE_SOURCE_DIR}/Core/Src/stm32h7rsxx_hal_timebase_tim.c
-    ${CMAKE_SOURCE_DIR}/Core/Src/sysmem.c
-    ${CMAKE_SOURCE_DIR}/Core/Src/syscalls.c
-    ${CMAKE_SOURCE_DIR}/Core/Startup/startup_stm32h7r7xx.s
+    ${CMAKE_CURRENT_SOURCE_DIR}/Core/Src/main.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/Core/Src/gpio.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/Core/Src/freertos.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/Core/Src/dma2d.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/Core/Src/flash.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/Core/Src/i2c.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/Core/Src/ltdc.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/Core/Src/sdmmc.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/Core/Src/usart.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/Core/Src/stm32h7rsxx_it.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/Core/Src/stm32h7rsxx_hal_msp.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/Core/Src/stm32h7rsxx_hal_timebase_tim.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/Core/Src/sysmem.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/Core/Src/syscalls.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/Core/Startup/startup_stm32h7r7xx.s
 )
 
 # STM32 HAL/LL Drivers
 set(STM32_Drivers_Src
-    ${CMAKE_SOURCE_DIR}/Core/Src/system_stm32h7rsxx.c
-    ${CMAKE_SOURCE_DIR}/../Drivers/STM32H7RSxx_HAL_Driver/Src/stm32h7rsxx_hal_tim.c
-    ${CMAKE_SOURCE_DIR}/../Drivers/STM32H7RSxx_HAL_Driver/Src/stm32h7rsxx_hal_tim_ex.c
-    ${CMAKE_SOURCE_DIR}/../Drivers/STM32H7RSxx_HAL_Driver/Src/stm32h7rsxx_hal_cortex.c
-    ${CMAKE_SOURCE_DIR}/../Drivers/STM32H7RSxx_HAL_Driver/Src/stm32h7rsxx_hal_dma2d.c
-    ${CMAKE_SOURCE_DIR}/../Drivers/STM32H7RSxx_HAL_Driver/Src/stm32h7rsxx_hal_rcc.c
-    ${CMAKE_SOURCE_DIR}/../Drivers/STM32H7RSxx_HAL_Driver/Src/stm32h7rsxx_hal_rcc_ex.c
-    ${CMAKE_SOURCE_DIR}/../Drivers/STM32H7RSxx_HAL_Driver/Src/stm32h7rsxx_hal_flash.c
-    ${CMAKE_SOURCE_DIR}/../Drivers/STM32H7RSxx_HAL_Driver/Src/stm32h7rsxx_hal_flash_ex.c
-    ${CMAKE_SOURCE_DIR}/../Drivers/STM32H7RSxx_HAL_Driver/Src/stm32h7rsxx_hal_gpio.c
-    ${CMAKE_SOURCE_DIR}/../Drivers/STM32H7RSxx_HAL_Driver/Src/stm32h7rsxx_hal_dma.c
-    ${CMAKE_SOURCE_DIR}/../Drivers/STM32H7RSxx_HAL_Driver/Src/stm32h7rsxx_hal_dma_ex.c
-    ${CMAKE_SOURCE_DIR}/../Drivers/STM32H7RSxx_HAL_Driver/Src/stm32h7rsxx_hal_pwr.c
-    ${CMAKE_SOURCE_DIR}/../Drivers/STM32H7RSxx_HAL_Driver/Src/stm32h7rsxx_hal_pwr_ex.c
-    ${CMAKE_SOURCE_DIR}/../Drivers/STM32H7RSxx_HAL_Driver/Src/stm32h7rsxx_hal.c
-    ${CMAKE_SOURCE_DIR}/../Drivers/STM32H7RSxx_HAL_Driver/Src/stm32h7rsxx_hal_exti.c
-    ${CMAKE_SOURCE_DIR}/../Drivers/STM32H7RSxx_HAL_Driver/Src/stm32h7rsxx_hal_i2c.c
-    ${CMAKE_SOURCE_DIR}/../Drivers/STM32H7RSxx_HAL_Driver/Src/stm32h7rsxx_hal_i2c_ex.c
-    ${CMAKE_SOURCE_DIR}/../Drivers/STM32H7RSxx_HAL_Driver/Src/stm32h7rsxx_hal_smbus.c
-    ${CMAKE_SOURCE_DIR}/../Drivers/STM32H7RSxx_HAL_Driver/Src/stm32h7rsxx_hal_smbus_ex.c
-    ${CMAKE_SOURCE_DIR}/../Drivers/STM32H7RSxx_HAL_Driver/Src/stm32h7rsxx_hal_ltdc.c
-    ${CMAKE_SOURCE_DIR}/../Drivers/STM32H7RSxx_HAL_Driver/Src/stm32h7rsxx_hal_ltdc_ex.c
-    ${CMAKE_SOURCE_DIR}/../Drivers/STM32H7RSxx_HAL_Driver/Src/stm32h7rsxx_hal_uart.c
-    ${CMAKE_SOURCE_DIR}/../Drivers/STM32H7RSxx_HAL_Driver/Src/stm32h7rsxx_hal_uart_ex.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/Core/Src/system_stm32h7rsxx.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/../Drivers/STM32H7RSxx_HAL_Driver/Src/stm32h7rsxx_hal_tim.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/../Drivers/STM32H7RSxx_HAL_Driver/Src/stm32h7rsxx_hal_tim_ex.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/../Drivers/STM32H7RSxx_HAL_Driver/Src/stm32h7rsxx_hal_cortex.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/../Drivers/STM32H7RSxx_HAL_Driver/Src/stm32h7rsxx_hal_dma2d.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/../Drivers/STM32H7RSxx_HAL_Driver/Src/stm32h7rsxx_hal_rcc.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/../Drivers/STM32H7RSxx_HAL_Driver/Src/stm32h7rsxx_hal_rcc_ex.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/../Drivers/STM32H7RSxx_HAL_Driver/Src/stm32h7rsxx_hal_flash.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/../Drivers/STM32H7RSxx_HAL_Driver/Src/stm32h7rsxx_hal_flash_ex.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/../Drivers/STM32H7RSxx_HAL_Driver/Src/stm32h7rsxx_hal_gpio.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/../Drivers/STM32H7RSxx_HAL_Driver/Src/stm32h7rsxx_hal_dma.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/../Drivers/STM32H7RSxx_HAL_Driver/Src/stm32h7rsxx_hal_dma_ex.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/../Drivers/STM32H7RSxx_HAL_Driver/Src/stm32h7rsxx_hal_pwr.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/../Drivers/STM32H7RSxx_HAL_Driver/Src/stm32h7rsxx_hal_pwr_ex.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/../Drivers/STM32H7RSxx_HAL_Driver/Src/stm32h7rsxx_hal.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/../Drivers/STM32H7RSxx_HAL_Driver/Src/stm32h7rsxx_hal_exti.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/../Drivers/STM32H7RSxx_HAL_Driver/Src/stm32h7rsxx_hal_i2c.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/../Drivers/STM32H7RSxx_HAL_Driver/Src/stm32h7rsxx_hal_i2c_ex.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/../Drivers/STM32H7RSxx_HAL_Driver/Src/stm32h7rsxx_hal_smbus.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/../Drivers/STM32H7RSxx_HAL_Driver/Src/stm32h7rsxx_hal_smbus_ex.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/../Drivers/STM32H7RSxx_HAL_Driver/Src/stm32h7rsxx_hal_ltdc.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/../Drivers/STM32H7RSxx_HAL_Driver/Src/stm32h7rsxx_hal_ltdc_ex.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/../Drivers/STM32H7RSxx_HAL_Driver/Src/stm32h7rsxx_ll_sdmmc.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/../Drivers/STM32H7RSxx_HAL_Driver/Src/stm32h7rsxx_ll_dlyb.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/../Drivers/STM32H7RSxx_HAL_Driver/Src/stm32h7rsxx_hal_sd.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/../Drivers/STM32H7RSxx_HAL_Driver/Src/stm32h7rsxx_hal_sd_ex.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/../Drivers/STM32H7RSxx_HAL_Driver/Src/stm32h7rsxx_hal_sdio.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/../Drivers/STM32H7RSxx_HAL_Driver/Src/stm32h7rsxx_hal_uart.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/../Drivers/STM32H7RSxx_HAL_Driver/Src/stm32h7rsxx_hal_uart_ex.c
 )
 
 # Drivers Midllewares
 
 set(FreeRTOS_Src
-    ${CMAKE_SOURCE_DIR}/../Middlewares/Third_Party/FreeRTOS/Source/portable/Common/mpu_wrappers_v2.c
-    ${CMAKE_SOURCE_DIR}/../Middlewares/Third_Party/FreeRTOS/Source/croutine.c
-    ${CMAKE_SOURCE_DIR}/../Middlewares/Third_Party/FreeRTOS/Source/event_groups.c
-    ${CMAKE_SOURCE_DIR}/../Middlewares/Third_Party/FreeRTOS/Source/list.c
-    ${CMAKE_SOURCE_DIR}/../Middlewares/Third_Party/FreeRTOS/Source/queue.c
-    ${CMAKE_SOURCE_DIR}/../Middlewares/Third_Party/FreeRTOS/Source/stream_buffer.c
-    ${CMAKE_SOURCE_DIR}/../Middlewares/Third_Party/FreeRTOS/Source/tasks.c
-    ${CMAKE_SOURCE_DIR}/../Middlewares/Third_Party/FreeRTOS/Source/timers.c
-    ${CMAKE_SOURCE_DIR}/../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os2.c
-    ${CMAKE_SOURCE_DIR}/../Middlewares/Third_Party/FreeRTOS/Source/portable/Common/mpu_wrappers.c
-    ${CMAKE_SOURCE_DIR}/../Middlewares/Third_Party/FreeRTOS/Source/portable/MemMang/heap_4.c
-    ${CMAKE_SOURCE_DIR}/../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F/port.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/../Middlewares/Third_Party/FreeRTOS/Source/portable/Common/mpu_wrappers_v2.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/../Middlewares/Third_Party/FreeRTOS/Source/croutine.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/../Middlewares/Third_Party/FreeRTOS/Source/event_groups.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/../Middlewares/Third_Party/FreeRTOS/Source/list.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/../Middlewares/Third_Party/FreeRTOS/Source/queue.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/../Middlewares/Third_Party/FreeRTOS/Source/stream_buffer.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/../Middlewares/Third_Party/FreeRTOS/Source/tasks.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/../Middlewares/Third_Party/FreeRTOS/Source/timers.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2/cmsis_os2.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/../Middlewares/Third_Party/FreeRTOS/Source/portable/Common/mpu_wrappers.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/../Middlewares/Third_Party/FreeRTOS/Source/portable/MemMang/heap_4.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM4F/port.c
 )
 # Link directories setup
 set(MX_LINK_DIRS
@@ -87,7 +93,9 @@ set(MX_LINK_DIRS
 # Project libraries
 set (MX_LINK_LIBS 
     STM32_Drivers
-    FreeRTOS	
+    ${TOOLCHAIN_LINK_LIBRARIES}
+    FreeRTOS
+	
 )
 # Interface library for includes and symbols
 add_library(stm32cubemx INTERFACE)

@@ -65,6 +65,7 @@ target_sources(${CMAKE_PROJECT_NAME} PRIVATE
     # Add user sources here
     ${CMAKE_SOURCE_DIR}/../BSP/gt911_driver.c
     ${CMAKE_SOURCE_DIR}/../BSP/led_driver.c
+    ${CMAKE_SOURCE_DIR}/../BSP/sdmmc_sdcard.c
 )
 
 # Link directories setup

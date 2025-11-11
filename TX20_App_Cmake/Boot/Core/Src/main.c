@@ -24,12 +24,14 @@
 #include "flash.h"
 #include "i2c.h"
 #include "ltdc.h"
+#include "sdmmc.h"
 #include "usart.h"
 #include "gpio.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "gt911_driver.h"
+#include "sdmmc_sdcard.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -104,19 +106,21 @@ int main(void)
   MX_I2C2_Init();
   MX_DMA2D_Init();
   MX_LTDC_Init();
+//   MX_SDMMC2_SDIO_Init();
   /* USER CODE BEGIN 2 */
   HAL_GPIO_WritePin(PWR_ON_GPIO_Port, PWR_ON_Pin,GPIO_PIN_SET);
   HAL_GPIO_WritePin(DISP_GPIO_Port, DISP_Pin,GPIO_PIN_SET);
   HAL_GPIO_WritePin(Backlight_GPIO_Port, Backlight_Pin,GPIO_PIN_SET);
 //   gt911_init();
   uart4_send_string("Into APP!\n");
-    HAL_GPIO_WritePin(GPIOM, LED2_Pin|LED1_Pin|LED0_Pin,GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOM, LED2_Pin | LED1_Pin | LED0_Pin, GPIO_PIN_RESET);
+  sd_init();
+  HAL_Delay(100);
+  show_sdcard_info();
   /* USER CODE END 2 */
 
   /* Init scheduler */
-  osKernelInitialize();
-
-  /* Call init function for freertos objects (in cmsis_os2.c) */
+  osKernelInitialize();  /* Call init function for freertos objects (in cmsis_os2.c) */
   MX_FREERTOS_Init();
 
   /* Start scheduler */
@@ -166,7 +170,16 @@ void SystemClock_Config(void)
   RCC_OscInitStruct.PLL1.PLLS = 2;
   RCC_OscInitStruct.PLL1.PLLT = 2;
   RCC_OscInitStruct.PLL1.PLLFractional = 0;
-  RCC_OscInitStruct.PLL2.PLLState = RCC_PLL_NONE;
+  RCC_OscInitStruct.PLL2.PLLState = RCC_PLL_ON;
+  RCC_OscInitStruct.PLL2.PLLSource = RCC_PLLSOURCE_HSE;
+  RCC_OscInitStruct.PLL2.PLLM = 4;
+  RCC_OscInitStruct.PLL2.PLLN = 84;
+  RCC_OscInitStruct.PLL2.PLLP = 2;
+  RCC_OscInitStruct.PLL2.PLLQ = 2;
+  RCC_OscInitStruct.PLL2.PLLR = 2;
+  RCC_OscInitStruct.PLL2.PLLS = 3;
+  RCC_OscInitStruct.PLL2.PLLT = 3;
+  RCC_OscInitStruct.PLL2.PLLFractional = 0;
   RCC_OscInitStruct.PLL3.PLLState = RCC_PLL_ON;
   RCC_OscInitStruct.PLL3.PLLSource = RCC_PLLSOURCE_HSE;
   RCC_OscInitStruct.PLL3.PLLM = 2;
@@ -270,8 +283,7 @@ void Error_Handler(void)
   }
   /* USER CODE END Error_Handler_Debug */
 }
-
-#ifdef  USE_FULL_ASSERT
+#ifdef USE_FULL_ASSERT
 /**
   * @brief  Reports the name of the source file and the source line number
   *         where the assert_param error has occurred.
