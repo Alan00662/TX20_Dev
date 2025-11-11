@@ -5,7 +5,7 @@
 #include "usart.h"
 #include "FreeRTOS.h"
 #include "cmsis_os2.h"
-
+#include "delays_driver.h"
 #define TP_I2C hi2c1
 
 
@@ -53,14 +53,15 @@ static void GT911_RD_Reg(uint16_t reg,uint8_t *buf,uint8_t len)
 
 void gt911_init(void)
 {
-	  uint8_t temp[5]={0};	
+	  uint8_t temp[5]={0};
 
-    HAL_GPIO_WritePin(TP_RST_GPIO_Port, TP_RST_Pin,GPIO_PIN_RESET);
-    HAL_Delay(10);
+    HAL_GPIO_WritePin(TP_RST_GPIO_Port, TP_RST_Pin, GPIO_PIN_RESET);
+    debug_tx4("gt911_init...\n");
+    // delay_ms(10);
     HAL_GPIO_WritePin(TP_INT_GPIO_Port, TP_INT_Pin,GPIO_PIN_RESET);
-    HAL_Delay(1);
+    // delay_ms(1);
     HAL_GPIO_WritePin(TP_RST_GPIO_Port, TP_RST_Pin,GPIO_PIN_SET);
-    HAL_Delay(60);
+    // delay_ms(60);
 	set_float();
 
 	temp[4]=0;

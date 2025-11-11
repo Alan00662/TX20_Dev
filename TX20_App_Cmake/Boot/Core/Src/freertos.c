@@ -98,7 +98,8 @@ void MX_FREERTOS_Init(void); /* (MISRA C 2004 rule 8.1) */
   */
 void MX_FREERTOS_Init(void) {
   /* USER CODE BEGIN Init */
-    gt911_init();
+  gt911_init();
+    uart4_send_string("Into MX_FREERTOS_Init!\n");
   /* USER CODE END Init */
 
   /* USER CODE BEGIN RTOS_MUTEX */
@@ -150,6 +151,7 @@ void MX_FREERTOS_Init(void) {
 void StartDefaultTask(void *argument)
 {
   /* USER CODE BEGIN StartDefaultTask */
+  uart4_send_string("StartDefaultTask!\n");
   /* Infinite loop */
   for(;;)
   {
@@ -165,14 +167,17 @@ void StartDefaultTask(void *argument)
 * @retval None
 */
 /* USER CODE END Header_LedTask */
-void LedTask(void *argument)
-{
+void LedTask(void *argument) {
+
   /* USER CODE BEGIN LedTask */
-    uint32_t preTime = xTaskGetTickCount();
+  uart4_send_string("LedTask!\n");
+    // uint32_t preTime = xTaskGetTickCount();
   /* Infinite loop */
   for (;;) {
-    led_loopbink();
-    vTaskDelayUntil(&preTime, 399);
+    // led_loopbink();
+    uart4_send_string("LedTask!\n");
+    // vTaskDelayUntil(&preTime, 399);
+    osDelay(400);
   }
   /* USER CODE END LedTask */
 }
@@ -187,15 +192,16 @@ void LedTask(void *argument)
 void TouchTask(void *argument)
 {
   /* USER CODE BEGIN TouchTask */
-      uint32_t preTime = xTaskGetTickCount();
+  uart4_send_string("TouchTask!\n");
+    //   uint32_t preTime = xTaskGetTickCount();
   /* Infinite loop */
   for (;;) {
-            gt911_get_state(&Touch);
-        if(Touch.TouchDetected)
-        {
-            debug_tx4("X:%d,Y:%d\n",Touch.X,Touch.Y);
-        }
-    vTaskDelayUntil(&preTime, 19);
+        //     gt911_get_state(&Touch);
+        // if(Touch.TouchDetected)
+        // {
+        //     debug_tx4("X:%d,Y:%d\n",Touch.X,Touch.Y);
+        // }
+    // vTaskDelayUntil(&preTime, 19);
   }
   /* USER CODE END TouchTask */
 }
@@ -210,6 +216,7 @@ void TouchTask(void *argument)
 void DisplayTask(void *argument)
 {
   /* USER CODE BEGIN DisplayTask */
+  uart4_send_string("DisplayTask!\n");
   /* Infinite loop */
   for(;;)
   {

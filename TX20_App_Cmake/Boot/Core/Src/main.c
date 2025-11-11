@@ -32,6 +32,7 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "gt911_driver.h"
+#include "delays_driver.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -114,7 +115,7 @@ int main(void)
   HAL_GPIO_WritePin(PWR_ON_GPIO_Port, PWR_ON_Pin,GPIO_PIN_SET);
   HAL_GPIO_WritePin(DISP_GPIO_Port, DISP_Pin,GPIO_PIN_SET);
   HAL_GPIO_WritePin(Backlight_GPIO_Port, Backlight_Pin,GPIO_PIN_SET);
-//   gt911_init();
+  delaysInit();
   uart4_send_string("Into APP!\n");
     HAL_GPIO_WritePin(GPIOM, LED2_Pin|LED1_Pin|LED0_Pin,GPIO_PIN_RESET);
   /* USER CODE END 2 */
