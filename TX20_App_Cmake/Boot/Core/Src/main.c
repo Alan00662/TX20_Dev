@@ -35,11 +35,16 @@
 #include "gt911_driver.h"
 #include "sdmmc_sdcard.h"
 #include "spi_sdcard.h"
+#include "usbd_core.h"
+#include "usbd_desc.h"
+#include "usbd_msc.h"
+#include "usbd_msc_storage.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
 /* USER CODE BEGIN PTD */
-
+/* USBD句柄 */
+USBD_HandleTypeDef g_usbd_handle = {0};
 /* USER CODE END PTD */
 
 /* Private define ------------------------------------------------------------*/
@@ -118,7 +123,7 @@ int main(void)
 //   gt911_init();
   uart4_send_string("Into APP!\n");
   HAL_GPIO_WritePin(GPIOM, LED2_Pin | LED1_Pin | LED0_Pin, GPIO_PIN_RESET);
-#if 1
+#if 0
   spi_sdcard_init();
    HAL_Delay(100);
     show_spi_sdcard_info();  
@@ -127,6 +132,11 @@ int main(void)
   HAL_Delay(100);
   show_sdcard_info();
 #endif
+
+    USBD_Init(&g_usbd_handle, &MSC_Desc, DEVICE_HS);
+    USBD_RegisterClass(&g_usbd_handle, USBD_MSC_CLASS);
+    USBD_MSC_RegisterStorage(&g_usbd_handle, &USBD_MSC_fops);
+    USBD_Start(&g_usbd_handle);
   /* USER CODE END 2 */
 
   /* Init scheduler */

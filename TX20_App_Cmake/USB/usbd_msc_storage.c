@@ -19,10 +19,9 @@
  */
 
 #include "usbd_msc_storage.h"
-#include "./BSP/NORFLASH/norflash_ex.h"
-#include "./BSP/SDNAND/spi_sdnand.h"
-#include "./BSP/SDMMC/sdmmc_sdcard.h"
 
+#include "sdmmc_sdcard.h"
+#include "spi_sdcard.h"
 /* 磁盘编号定义 */
 #define LUN_NOR_FLASH   0   /* NOR Flash */
 #define LUN_SD_NAND     1   /* SD NAND */
@@ -108,12 +107,10 @@ int8_t STORAGE_Init(uint8_t lun)
     {
         case LUN_NOR_FLASH:
         {
-//            res = norflash_ex_init();
             break;
         }
         case LUN_SD_NAND:
         {
-            res = sdnand_init();
             break;
         }
         case LUN_SD:
@@ -223,7 +220,7 @@ int8_t STORAGE_Read(uint8_t lun, uint8_t *buf, uint32_t blk_addr, uint16_t blk_l
     {
         case LUN_NOR_FLASH:
         {
-            norflash_ex_read(NORFLASH_MSC_BASE + (blk_addr << 9), buf, blk_len << 9);
+            // norflash_ex_read(NORFLASH_MSC_BASE + (blk_addr << 9), buf, blk_len << 9);
             break;
         }
         case LUN_SD_NAND:
@@ -266,7 +263,7 @@ int8_t STORAGE_Write(uint8_t lun, uint8_t *buf, uint32_t blk_addr, uint16_t blk_
     {
         case LUN_NOR_FLASH:
         {
-            norflash_ex_write(NORFLASH_MSC_BASE + (blk_addr << 9), buf, blk_len << 9);
+            // norflash_ex_write(NORFLASH_MSC_BASE + (blk_addr << 9), buf, blk_len << 9);
             break;
         }
         case LUN_SD_NAND:

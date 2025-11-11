@@ -58,6 +58,7 @@ enable_language(C ASM)
 target_include_directories(${CMAKE_PROJECT_NAME} PRIVATE
     # Add user defined include paths
     ${CMAKE_SOURCE_DIR}/../BSP
+    ${CMAKE_SOURCE_DIR}/../USB
 )
 
 # Add sources to executable
@@ -67,6 +68,19 @@ target_sources(${CMAKE_PROJECT_NAME} PRIVATE
     ${CMAKE_SOURCE_DIR}/../BSP/led_driver.c
     ${CMAKE_SOURCE_DIR}/../BSP/sdmmc_sdcard.c
     ${CMAKE_SOURCE_DIR}/../BSP/spi_sdcard.c
+    ${CMAKE_SOURCE_DIR}/../BSP/malloc.c
+
+    ${CMAKE_SOURCE_DIR}/../USB/usbd_core.c
+    ${CMAKE_SOURCE_DIR}/../USB/usbd_ctlreq.c
+    ${CMAKE_SOURCE_DIR}/../USB/usbd_ioreq.c
+    ${CMAKE_SOURCE_DIR}/../USB/usbd_msc.c
+    ${CMAKE_SOURCE_DIR}/../USB/usbd_msc_bot.c
+    ${CMAKE_SOURCE_DIR}/../USB/usbd_msc_data.c
+
+    ${CMAKE_SOURCE_DIR}/../USB/usbd_msc_scsi.c
+    ${CMAKE_SOURCE_DIR}/../USB/usbd_conf.c
+    ${CMAKE_SOURCE_DIR}/../USB/usbd_desc.c
+    ${CMAKE_SOURCE_DIR}/../USB/usbd_msc_storage.c
 )
 
 # Link directories setup
