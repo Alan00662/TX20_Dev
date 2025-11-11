@@ -28,6 +28,7 @@ set(MX_Application_Src
     ${CMAKE_CURRENT_SOURCE_DIR}/Core/Src/i2c.c
     ${CMAKE_CURRENT_SOURCE_DIR}/Core/Src/ltdc.c
     ${CMAKE_CURRENT_SOURCE_DIR}/Core/Src/sdmmc.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/Core/Src/spi.c
     ${CMAKE_CURRENT_SOURCE_DIR}/Core/Src/usart.c
     ${CMAKE_CURRENT_SOURCE_DIR}/Core/Src/stm32h7rsxx_it.c
     ${CMAKE_CURRENT_SOURCE_DIR}/Core/Src/stm32h7rsxx_hal_msp.c
@@ -66,6 +67,8 @@ set(STM32_Drivers_Src
     ${CMAKE_CURRENT_SOURCE_DIR}/../Drivers/STM32H7RSxx_HAL_Driver/Src/stm32h7rsxx_hal_sd.c
     ${CMAKE_CURRENT_SOURCE_DIR}/../Drivers/STM32H7RSxx_HAL_Driver/Src/stm32h7rsxx_hal_sd_ex.c
     ${CMAKE_CURRENT_SOURCE_DIR}/../Drivers/STM32H7RSxx_HAL_Driver/Src/stm32h7rsxx_hal_sdio.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/../Drivers/STM32H7RSxx_HAL_Driver/Src/stm32h7rsxx_hal_spi.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/../Drivers/STM32H7RSxx_HAL_Driver/Src/stm32h7rsxx_hal_spi_ex.c
     ${CMAKE_CURRENT_SOURCE_DIR}/../Drivers/STM32H7RSxx_HAL_Driver/Src/stm32h7rsxx_hal_uart.c
     ${CMAKE_CURRENT_SOURCE_DIR}/../Drivers/STM32H7RSxx_HAL_Driver/Src/stm32h7rsxx_hal_uart_ex.c
 )

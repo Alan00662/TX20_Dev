@@ -25,6 +25,7 @@
 #include "i2c.h"
 #include "ltdc.h"
 #include "sdmmc.h"
+#include "spi.h"
 #include "usart.h"
 #include "gpio.h"
 
@@ -32,6 +33,7 @@
 /* USER CODE BEGIN Includes */
 #include "gt911_driver.h"
 #include "sdmmc_sdcard.h"
+#include "spi_sdcard.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -107,6 +109,7 @@ int main(void)
   MX_DMA2D_Init();
   MX_LTDC_Init();
 //   MX_SDMMC2_SDIO_Init();
+//   MX_SPI4_Init();
   /* USER CODE BEGIN 2 */
   HAL_GPIO_WritePin(PWR_ON_GPIO_Port, PWR_ON_Pin,GPIO_PIN_SET);
   HAL_GPIO_WritePin(DISP_GPIO_Port, DISP_Pin,GPIO_PIN_SET);
@@ -114,9 +117,15 @@ int main(void)
 //   gt911_init();
   uart4_send_string("Into APP!\n");
   HAL_GPIO_WritePin(GPIOM, LED2_Pin | LED1_Pin | LED0_Pin, GPIO_PIN_RESET);
+#if 1
+  spi_sdcard_init();
+   HAL_Delay(100);
+    show_spi_sdcard_info();  
+#else
   sd_init();
   HAL_Delay(100);
   show_sdcard_info();
+#endif
   /* USER CODE END 2 */
 
   /* Init scheduler */
